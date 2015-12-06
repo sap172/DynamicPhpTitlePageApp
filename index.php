@@ -16,7 +16,32 @@ and open the template in the editor.
         </li>
         
         <?php
-        echo "hello world!";
+            echo "hello world!";
+            
+            //conection on port 1527
+            
+            //--table columns--
+            //index
+            //messageBody
+            //senderIP
+            //timeSent
+            
+            //MsgDataDB.MsgData
+            
+            $username='netbeans';
+            $password='netbeans123';
+            $dbname='Driver=odbc:derby://localhost:1527/MsgDataDB';
+            
+            $dbconn= odbc_connect($dbname, $password, $username);
+            odbc_autocommit($dbconn, TRUE);
+            echo $dbconn;
+            
+            $sqlInsert = "INSERT INTO MSGDATA VALUES "
+                    . "('Message #2', '127.0.0.1', '12:22:33', 2);";
+
+
+            $result = odbc_exec($dbconn, $sqlInsert);
+            print $result;
         ?>
     </body>
 </html>
